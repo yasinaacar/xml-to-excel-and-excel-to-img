@@ -19,7 +19,7 @@ if not os.path.exists(folder):
 columnOfImg = ["resim_1", "resim_2", "resim_3", "resim_4", "resim_5", "resim_6", "resim_7"]
 
 # Geçersiz karakterleri kaldıran ve Türkçe karakterleri düzenleyen işlev
-def duzelt(element):
+def edit(element):
     element = re.sub(r'[<>:"/\\|?*]', '', element)  # Geçersiz karakterleri kaldır
     element = ''.join(c for c in unicodedata.normalize('NFD', element) if unicodedata.category(c) != 'Mn')  # Türkçe karakterleri düzenle
     return element
@@ -34,7 +34,7 @@ for col in columnOfImg:
             response = requests.get(url)
             if response.status_code == 200:  # İstek başarılı ise
                 # Resmi indir ve dosyaya kaydet
-                folderName = f"{folder}/{duzelt(productName)}_{col}_{index}.jpg"
+                folderName = f"{folder}/{edit(productName)}_{col}_{index}.jpg"
                 with open(folderName, "wb") as file:
                     file.write(response.content)
                 print(f"Resim {folderName} indirildi.")
