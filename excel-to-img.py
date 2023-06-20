@@ -19,11 +19,11 @@ if not os.path.exists(folder):
 columnOfImg = ["resim_1", "resim_2", "resim_3", "resim_4", "resim_5", "resim_6", "resim_7"]
 
 # Geçersiz karakterleri kaldıran ve Türkçe karakterleri düzenleyen işlev
-def duzelt(dosya_adi):
-    dosya_adi = re.sub(r'[<>:"/\\|?*]', '', dosya_adi)  # Geçersiz karakterleri kaldır
-    dosya_adi = ''.join(c for c in unicodedata.normalize('NFD', dosya_adi) if unicodedata.category(c) != 'Mn')  # Türkçe karakterleri düzenle
-    return dosya_adi
-
+def duzelt(element):
+    element = re.sub(r'[<>:"/\\|?*]', '', element)  # Geçersiz karakterleri kaldır
+    element = ''.join(c for c in unicodedata.normalize('NFD', element) if unicodedata.category(c) != 'Mn')  # Türkçe karakterleri düzenle
+    return element
+    
 # Her bir resim sütunu için işlem yap
 for col in columnOfImg:
     # Her bir hücredeki URL ve ürün adını kontrol et
